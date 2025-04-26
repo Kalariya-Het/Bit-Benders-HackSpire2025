@@ -1,0 +1,98 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 60% 98%;
+    --foreground: 260 10% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 10% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 10% 20%;
+
+    --primary: 260 84% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 195 94% 95%;
+    --secondary-foreground: 195 50% 30%;
+
+    --muted: 260 10% 90%;
+    --muted-foreground: 260 10% 40%;
+
+    --accent: 260 40% 92%;
+    --accent-foreground: 260 30% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 260 20% 88%;
+    --input: 260 20% 88%;
+    --ring: 260 84% 58%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 260 20% 10%;
+    --foreground: 260 10% 90%;
+
+    --card: 260 20% 12%;
+    --card-foreground: 260 10% 90%;
+
+    --popover: 260 20% 12%;
+    --popover-foreground: 260 10% 90%;
+
+    --primary: 260 70% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 195 70% 15%;
+    --secondary-foreground: 195 50% 90%;
+
+    --muted: 260 20% 20%;
+    --muted-foreground: 260 10% 70%;
+
+    --accent: 260 20% 20%;
+    --accent-foreground: 260 10% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 260 20% 30%;
+    --input: 260 20% 30%;
+    --ring: 260 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Custom utilities */
+.glass-effect {
+  @apply bg-white/20 backdrop-blur-md border border-white/30 shadow-lg;
+}
+
+.emotion-bubble {
+  @apply rounded-full px-6 py-3 text-sm font-medium;
+  @apply shadow-md transition-all duration-300;
+}
+
+.voice-bar {
+  @apply bg-mosaic-500 w-1 mx-0.5 rounded-t-full inline-block;
+}
