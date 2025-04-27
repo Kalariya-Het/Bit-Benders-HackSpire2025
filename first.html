@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMosaic - Smile to Enter</title>
+  <style>
+    body {
+      background-color: #e0f7fa;
+      color: #004d40;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    video {
+      border: 5px solid #26c6da;
+      border-radius: 15px;
+      width: 320px;
+      height: auto;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: opacity 1s;
+    }
+    #message {
+      font-size: 1.5rem;
+      color: #00796b;
+      margin-top: 10px;
+      transition: opacity 1s;
+    }
+    #welcome {
+      display: none;
+      animation: pop 1s ease forwards;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #26c6da;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      color: #004d40;
+      margin-top: 10px;
+    }
+    a {
+      margin-top: 30px;
+      display: inline-block;
+      background-color: #00796b;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #004d40;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="heading">😊 Smile to Begin Your Journey</h1>
+  <video id="webcam" autoplay muted playsinline></video>
+  <p id="message">Waiting for your beautiful smile...</p>
+
+  <div id="welcome">
+    <h1>Welcome to MindMosaic 🌿</h1>
+    <p>Your path to mental wellness starts with a smile.</p>
+    <a href="#">Get Started</a>
+  </div>
+
+  <!-- Hidden Audio Element for Background Music -->
+  <audio id="bg-music" preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2022/07/29/audio_b087f12129.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Load face-api.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+  <!-- Load canvas-confetti -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const video = document.getElementById("webcam");
+    const message = document.getElementById("message");
+    const heading = document.getElementById("heading");
+    const welcome = document.getElementById("welcome");
+    const bgMusic = document.getElementById("bg-music");
+
+    async function startVideo() {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+    }
+
+    async function detectSmile() {
+      await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+      await faceapi.nets.faceExpressionNet.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+
+      const detectionInterval = setInterval(async () => {
+        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+        if (detections.length > 0) {
+          const expressions = detections[0].expressions;
+          if (expressions.happy > 0.4) {  // lighter smile detection
+            clearInterval(detectionInterval);
+            message.textContent = "Smile detected! 🎉";
+
+            // Play confetti
+            confetti({
+              particleCount: 100,
+              spread: 60,
+              origin: { y: 0.6 },
+              colors: ['#00796b', '#26c6da', '#004d40']
+            });
+
+            // Play background music
+            bgMusic.volume = 0.5;
+            bgMusic.play();
+
+            // Fade out webcam and message
+            setTimeout(() => {
+              video.style.opacity = "0";
+              message.style.opacity = "0";
+              heading.style.opacity = "0";
+            }, 500);
+
+            // Show welcome after fade
+            setTimeout(() => {
+              video.style.display = "none";
+              message.style.display = "none";
+              heading.style.display = "none";
+              welcome.style.display = "block";
+            }, 1500);
+
+            // Redirect after showing welcome
+            setTimeout(() => {
+              window.location.href = "yourpage.html"; // <-- CHANGE this to your real homepage
+            }, 6000);
+          } else {
+            message.textContent = "Come on! Give us a tiny smile 😊";
+          }
+        } else {
+          message.textContent = "Waiting for your beautiful smile...";
+        }
+      }, 700);
+    }
+
+    startVideo().then(detectSmile);
+  </script>
+</body>
+</html>

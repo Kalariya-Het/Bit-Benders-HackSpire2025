@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Self-Care Techniques - MindCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9fdfd;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background-color: #00796b;
+      color: white;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .self-care-page {
+      padding: 4rem 5%;
+      color: #444;
+    }
+    .self-care-page h1 {
+      font-size: 3rem;
+      color: #00796b;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .intro-quote {
+      text-align: center;
+      font-style: italic;
+      color: #00acc1;
+      margin-bottom: 3rem;
+    }
+
+    .techniques-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .technique {
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .technique:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .technique img {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .technique h2 {
+      font-size: 1.5rem;
+      color: #00acc1;
+      margin-bottom: 0.8rem;
+    }
+
+    .technique p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    footer {
+      background: #00796b;
+      text-align: center;
+      padding: 1rem;
+      color: white;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">MindCare</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="mental-health-matters.html">Mental Health Matters</a></li>
+      <li><a href="narratives.html">Narratives</a></li>
+      <li><a href="find-help.html">Find Help</a></li>
+    </ul>
+  </nav>
+
+  <div class="self-care-page">
+    <h1>Self-Care Techniques</h1>
+    <p class="intro-quote">"Taking care of yourself is the most powerful way to begin taking care of others."</p>
+
+    <div class="techniques-container">
+
+      <div class="technique">
+        <img src="https://cdn-icons-png.flaticon.com/512/3665/3665923.png" alt="Breathing Icon">
+        <h2>Mindful Breathing</h2>
+        <p>Focus on your breath. Deep, slow breaths can center you and ease tension within minutes.</p>
+      </div>
+
+      <div class="technique">
+        <img src="https://cdn-icons-png.flaticon.com/512/2948/2948035.png" alt="Exercise Icon">
+        <h2>Physical Exercise</h2>
+        <p>Move your body with activities like jogging, yoga, or even stretching to boost your mood and energy.</p>
+      </div>
+
+      <div class="technique">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Art Icon">
+        <h2>Creative Expression</h2>
+        <p>Paint, draw, sing, or write — creative outlets help process emotions and ignite joy.</p>
+      </div>
+
+      <div class="technique">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Journal Icon">
+        <h2>Journaling</h2>
+        <p>Write your thoughts down daily. Journaling clears your mind and reveals patterns and progress.</p>
+      </div>
+
+      <div class="technique">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Nature Icon">
+        <h2>Connecting with Nature</h2>
+        <p>Walk in a park, hike a trail, or just sit by a tree — nature heals, calms, and inspires.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MindCare. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

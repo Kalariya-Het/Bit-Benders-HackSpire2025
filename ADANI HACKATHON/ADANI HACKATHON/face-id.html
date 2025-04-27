@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMosaic - Deep Mood Analyzer</title>
+  <style>
+    body {
+      background-color: #e0f7fa;
+      color: #004d40;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    video {
+      border: 5px solid #26c6da;
+      border-radius: 15px;
+      width: 320px;
+      height: auto;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: opacity 1s;
+    }
+    #message {
+      font-size: 1.5rem;
+      color: #00796b;
+      margin-top: 10px;
+      transition: opacity 1s;
+      max-width: 90%;
+    }
+    #welcome {
+      display: none;
+      animation: pop 1s ease forwards;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #26c6da;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      color: #004d40;
+      margin-top: 10px;
+    }
+    a {
+      margin-top: 30px;
+      display: inline-block;
+      background-color: #00796b;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #004d40;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="heading">🧠 Show Your Mood to Begin</h1>
+  <video id="webcam" autoplay muted playsinline></video>
+  <p id="message">Analyzing your beautiful face...</p>
+
+  <div id="welcome">
+    <h1>Welcome to MindMosaic 🌿</h1>
+    <p>Your path to mental wellness starts with understanding your feelings.</p>
+    <a href="#">Get Started</a>
+  </div>
+
+  <audio id="bg-music" preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2022/07/29/audio_b087f12129.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script defer>
+    const video = document.getElementById("webcam");
+    const message = document.getElementById("message");
+    const heading = document.getElementById("heading");
+    const welcome = document.getElementById("welcome");
+    const bgMusic = document.getElementById("bg-music");
+
+    async function startVideo() {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+    }
+
+    function deepEmotionAnalysis(expressions) {
+      const { happy, sad, angry, fearful, disgusted, surprised, neutral } = expressions;
+
+      if (sad > 0.5 && fearful > 0.4 && neutral < 0.3) {
+        return "🌧️ You may be experiencing high anxiety or emotional distress. Please be kind to yourself.";
+      }
+      else if (sad > 0.6 && neutral > 0.4) {
+        return "🌙 You might be feeling sadness or mild depression. It's okay to reach out for support.";
+      }
+      else if (fearful > 0.6 && surprised > 0.4) {
+        return "🌪️ Signs of strong anxiety or worry detected. Try grounding techniques like deep breathing.";
+      }
+      else if (angry > 0.5 && disgusted > 0.4) {
+        return "🔥 You might be experiencing deep frustration. Taking a pause can help.";
+      }
+      else if (neutral > 0.7 && sad < 0.2) {
+        return "🌿 You seem calm and reflective. Enjoy the peace.";
+      }
+      else if (happy > 0.7 && surprised < 0.3) {
+        return "🌞 You radiate genuine happiness. Keep smiling!";
+      }
+      else if (happy > 0.5 && surprised > 0.4) {
+        return "🎉 You look joyfully excited! Celebrate the little moments.";
+      }
+      else {
+        return "💬 Your emotions are complex and beautiful. Listen to what your heart is telling you.";
+      }
+    }
+
+    async function detectMood() {
+      await faceapi.nets.tinyFaceDetector.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+      await faceapi.nets.faceExpressionNet.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models');
+
+      const detectionInterval = setInterval(async () => {
+        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+        if (detections.length > 0) {
+          const expressions = detections[0].expressions;
+          const deeperMessage = deepEmotionAnalysis(expressions);
+          message.textContent = deeperMessage;
+
+          const topExpressionConfidence = Math.max(...Object.values(expressions));
+          if (topExpressionConfidence > 0.65) {
+            clearInterval(detectionInterval);
+
+            confetti({
+              particleCount: 150,
+              spread: 80,
+              origin: { y: 0.6 },
+              colors: ['#00796b', '#26c6da', '#004d40']
+            });
+
+            bgMusic.volume = 0.5;
+            bgMusic.play();
+
+            setTimeout(() => {
+              video.style.opacity = "0";
+              message.style.opacity = "0";
+              heading.style.opacity = "0";
+            }, 500);
+
+            setTimeout(() => {
+              video.style.display = "none";
+              message.style.display = "none";
+              heading.style.display = "none";
+              welcome.style.display = "block";
+            }, 1500);
+
+            setTimeout(() => {
+              window.location.href = "yourpage.html"; // <-- Change to your real page
+            }, 6000);
+          }
+        } else {
+          message.textContent = "Analyzing your beautiful face...";
+        }
+      }, 700);
+    }
+
+    startVideo().then(detectMood);
+  </script>
+
+</body>
+</html>

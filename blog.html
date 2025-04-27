@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Mental Health Blogs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00796b;
+      margin-top: 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 80%;
+      max-width: 1200px;
+      margin-top: 20px;
+    }
+
+    .blog-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .blog-card-content {
+      padding: 15px;
+    }
+
+    .blog-card-content h3 {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .blog-card-content p {
+      font-size: 0.9rem;
+      color: #666;
+      height: 50px;
+      overflow: hidden;
+    }
+
+    .load-more {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .load-more:hover {
+      background-color: #004d40;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Latest Mental Health Blogs</h1>
+  <div class="container" id="blog-container">
+    <!-- Dynamic blog posts will be inserted here -->
+  </div>
+
+  <button class="load-more" id="load-more">Load More Blogs</button>
+
+  <script>
+    const blogContainer = document.getElementById('blog-container');
+    const loadMoreButton = document.getElementById('load-more');
+
+    // Hardcoded JSON data representing blog posts
+    const blogs = [
+      {
+        "title": "Mental Health Awareness",
+        "imageUrl": "https://images.unsplash.com/photo-1573497162821-f53b6e1b8d0e",
+        "summary": "An introduction to mental health awareness and its importance in society.",
+        "url": "https://example.com/blog-post-1"
+      },
+      {
+        "title": "The Importance of Therapy",
+        "imageUrl": "https://images.unsplash.com/photo-1528747031103-34614db4e380",
+        "summary": "Why therapy can be a helpful tool for mental health and well-being.",
+        "url": "https://example.com/blog-post-2"
+      },
+      {
+        "title": "Coping with Stress",
+        "imageUrl": "https://images.unsplash.com/photo-1521747116042-5e3c56db4e64",
+        "summary": "Effective strategies to manage stress and maintain a healthy mental state.",
+        "url": "https://example.com/blog-post-3"
+      },
+      {
+        "title": "Understanding Depression",
+        "imageUrl": "https://images.unsplash.com/photo-1505814951074-f276c9b1e847",
+        "summary": "A comprehensive guide to understanding depression and how to seek help.",
+        "url": "https://example.com/blog-post-4"
+      },
+      {
+        "title": "Overcoming Anxiety",
+        "imageUrl": "https://images.unsplash.com/photo-1509911193802-b227476c332e",
+        "summary": "Practical advice on dealing with anxiety and improving mental health.",
+        "url": "https://example.com/blog-post-5"
+      },
+      {
+        "title": "Self-Care for Mental Health",
+        "imageUrl": "https://images.unsplash.com/photo-1561948952-5f3e9db3b160",
+        "summary": "The importance of self-care practices in maintaining mental health and well-being.",
+        "url": "https://example.com/blog-post-6"
+      }
+    ];
+
+    // Function to render blogs in the UI
+    function renderBlogs() {
+      blogs.forEach(blog => {
+        const blogCard = document.createElement('div');
+        blogCard.classList.add('blog-card');
+        blogCard.addEventListener('click', () => openBlog(blog.url)); // Clicking opens the full blog post
+
+        blogCard.innerHTML = `
+          <img src="${blog.imageUrl}" alt="Blog Image">
+          <div class="blog-card-content">
+            <h3>${blog.title}</h3>
+            <p>${blog.summary}</p>
+          </div>
+        `;
+        blogContainer.appendChild(blogCard);
+      });
+    }
+
+    // Function to open the full blog in a new tab
+    function openBlog(url) {
+      window.open(url, '_blank'); // Open the blog in a new tab
+    }
+
+    // Event listener for the "Load More Blogs" button
+    loadMoreButton.addEventListener('click', () => {
+      // Here, you can add logic to load more blogs (pagination, etc.)
+      alert('You have reached the end of the list.');
+    });
+
+    // Initial render of blogs
+    renderBlogs();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MindCare Narratives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f2f6f7;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #00796b;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .narratives-page {
+      padding: 4rem 5%;
+    }
+    .narratives-page h1 {
+      font-size: 3rem;
+      color: #00796b;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .blogs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .blog {
+      background: white;
+      width: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .blog:hover {
+      transform: translateY(-10px);
+    }
+    .blog img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .blog-content {
+      padding: 1.5rem;
+    }
+    .blog-content h3 {
+      color: #00796b;
+      margin-bottom: 0.8rem;
+    }
+    .blog-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .share-your-story {
+      margin-top: 5rem;
+      background: #ffffff;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .share-your-story h2 {
+      color: #00796b;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    .share-your-story p {
+      color: #555;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #45a049;
+    }
+    .styled-form {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .styled-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    .styled-form input,
+    .styled-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .styled-form input:focus,
+    .styled-form textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    .styled-form button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .styled-form button:hover {
+      background-color: #45a049;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      background: #00796b;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">MindCare</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mental-health-matters.html">Mental Health Matters</a></li>
+          <li><a href="narratives.html">Narratives</a></li>
+          <li><a href="find-help.html">Find Help</a></li>
+        </ul>
+      </nav>
+      
+
+  <div class="narratives-page">
+    <h1>MindCare Narratives</h1>
+
+    <div class="blogs">
+
+      <div class="blog">
+        <img src="https://images.unsplash.com/photo-1593471971799-8d4e3a577a68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Person stressed">
+        <div class="blog-content">
+          <h3>Understanding Stress</h3>
+          <p>Learn about stress, its symptoms, and powerful techniques to overcome overwhelming feelings.</p>
+        </div>
+      </div>
+
+      <div class="blog">
+        <img src="https://images.unsplash.com/photo-1587497773609-c7fa90c380db?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Person anxious">
+        <div class="blog-content">
+          <h3>Dealing with Anxiety</h3>
+          <p>Explore anxiety triggers and discover coping strategies that bring calmness and balance.</p>
+        </div>
+      </div>
+
+      <div class="blog">
+        <img src="https://images.unsplash.com/photo-1504101098238-4b90fcf9b85a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Therapist session">
+        <div class="blog-content">
+          <h3>Finding a Therapist</h3>
+          <p>Finding the right therapist is essential. Here's how you can begin your healing journey today.</p>
+        </div>
+      </div>
+
+      <div class="blog">
+        <img src="https://images.unsplash.com/photo-1518554773335-7f40b31ed17d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Depression recovery">
+        <div class="blog-content">
+          <h3>Overcoming Depression</h3>
+          <p>Depression can be isolating, but recovery is possible. Learn steps towards emotional wellness.</p>
+        </div>
+      </div>
+
+      <div class="blog">
+        <img src="https://images.unsplash.com/photo-1605296860972-fc510f5b101b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthy lifestyle">
+        <div class="blog-content">
+          <h3>Building Healthy Habits</h3>
+          <p>Good habits shape mental strength. Start small and see big changes in your daily happiness.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Share Your Story Section -->
+    <div class="share-your-story">
+      <h2>Share Your Story</h2>
+      <p>Your experiences can inspire and help others. Share your mental health journey and become a part of our community.</p>
+      <button id="submit-story-btn" class="btn-primary">Submit Your Story</button>
+
+      <!-- Hidden Form -->
+      <form id="story-form" class="styled-form" style="display: none; margin-top: 20px;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+        <label for="story">Your Story:</label>
+        <textarea id="story" name="story" rows="5" placeholder="Share your story here..." required></textarea>
+
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MindCare. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // JavaScript to toggle form visibility
+    document.getElementById('submit-story-btn').addEventListener('click', function () {
+      const form = document.getElementById('story-form');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('story-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        story: document.getElementById('story').value,
+      };
+
+      try {
+        const response = await fetch('/submit-story', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          alert('Your story has been submitted successfully!');
+          document.getElementById('story-form').reset();
+        } else {
+          alert('Failed to submit your story. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
+
+</body>
+</html>
